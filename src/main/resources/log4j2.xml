@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="debug" monitorInterval="120">
+    <Properties>
+        <Property name="logs.dir">/tmp</Property>
+        <Property name="app.logName">productdetails-application.log</Property>
+
+    </Properties>
+    <Appenders>
+        <RollingFile name="application-log-file" fileName="${sys:logs.dir}/${app.logName}" filePattern="${sys:logs.dir}/${app.logName}.%i" >
+            <PatternLayout pattern="%d{yyyy-MM-dd'T'HH:mm:ss.SSSZ},_level=%p,_thread=%t,_category=%c,_message=%m%n"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10" compressionLevel="0"/>
+        </RollingFile>
+
+    </Appenders>
+    <Loggers>
+        <Root level="INFO">
+            <AppenderRef ref="application-log-file"/>
+        </Root>
+
+        <Logger name="com.myRetail" level="info"/>
+
+    </Loggers>
+</Configuration>
